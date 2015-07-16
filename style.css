@@ -15,9 +15,13 @@ body {
 
 .input {
 	text-align: center;
-	width: 400px;
+	width: 80%;
 	display: block;
 	margin: 20px auto;
+}
+
+#input-box {
+	width: 150px;
 }
 
 #submit {
