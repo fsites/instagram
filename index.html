@@ -10,6 +10,16 @@
 </head>
 <body ng-controller="MyCtrl">
 
+	<!-- LOGO -->
+	<img src="logo.png" id="logo">
+
+	<!-- USER INPUT -->
+	<form class="input" ng-submit="onSubmit()">
+		<input type="text" ng-model="userInput" required>
+		<input id="submit" type="submit" value="Submit" ng-click="show='feedback'">
+	</form>
+	<p ng-show="show=='feedback'" class="input" id="feedback">Here are the results for {{ userInput }}.</p>
+
 	
 </body>
 </html>
