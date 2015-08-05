@@ -1,5 +1,5 @@
 angular.module('instagramApp', [])
-	.controller('MyCtrl', ['$scope', function($scope, $timeout, $q, $http) {
+	.controller('MyCtrl', ['$scope', function($scope, $http) {
 
 		$scope.feedback = false;
 
@@ -14,6 +14,7 @@ angular.module('instagramApp', [])
 
 			//URL
 			var url = "https://api.instagram.com/v1/tags/" + $scope.userInput + "/media/recent";
+
 			// PARAMS
 			var request = {
 				client_id: "fe58bbb1a5724d1395b66b3f3728d11c";
@@ -21,6 +22,7 @@ angular.module('instagramApp', [])
 				count: 30;
 			};
 
+			//REQUEST
 			$http({
 				method: 'JSONP',
 				url: url,
@@ -35,13 +37,10 @@ angular.module('instagramApp', [])
 			})
 			.error(function() {
 				scope.loaded = false;
-				$scope.errorMessage = "Sorry, we returned an error."
+				$scope.errorMessage = "Sorry, we returned an error.";
 			});
 
-	
-
-
-		}
+		};
 
 	}]);
 
