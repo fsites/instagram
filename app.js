@@ -2,13 +2,13 @@ angular.module('instagramApp', ['ngAnimate'])
 	.controller('MyCtrl', ['$scope', function($scope, $timeout, $q, $http) {
 
 		$scope.onSubmit = function(userInput, url) {
-			// function wait() {
-			// 	var defer = $q.defer();
-			// 	$timeout(function() {
-			// 		defer.resolve();
-			// 	}, 1000);
-			// 	return defer.promise;
-			// };
+			function wait() {
+				var defer = $q.defer();
+				$timeout(function() {
+					defer.resolve();
+				}, 1000);
+				return defer.promise;
+			};
 
 			//URL
 			var url = "https://api.instagram.com/v1/tags/" + userInput + "/media/recent";
