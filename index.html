@@ -26,8 +26,10 @@
 
 	<!-- IMAGES -->
 	<div id="images">
-		<div ng-repeat="image in images"></div>
-	
+		<div ng-repeat="image in images">
+			<h3><a target="_blank" href='http://instagram.com/{{image.user.username}}'>{{image.user.username}}</a><h3>
+			<a href='{{image.link}}' target="_blank"><img ng-src='{{image.images.low_resolution.url}}'/></a>
+		</div>
 	</div>
 
 	
