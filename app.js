@@ -1,20 +1,19 @@
 angular.module('instagramApp', ['ngAnimate'])
 	.controller('MyCtrl', ['$scope', function($scope, $http) {
 
-		var hashtag = $scope.userInput; 
-
 		//Submit function makes request
-		$scope.onSubmit = function(hashtag) {
-	
+		$scope.onSubmit = function(tag) {
 
-			// URL
-			var url = "https://api.instagram.com/v1/tags/" + hashtag + "/media/recent";
 
-			// PARAMS
+			//VARIABLES
+			var tag = $scope.userInput;
+			var url = "https://api.instagram.com/v1/tags/" + tag + "/media/recent";
+
+			//PARAMETERS
 			var request = {
-			 	client_id: 'fe58bbb1a5724d1395b66b3f3728d11c';
-			 	callback: 'JSON_CALLBACK';
-			 	count: 30
+				'client_id': 'fe58bbb1a5724d1395b66b3f3728d11c',
+				'count': 30,
+				'callback': 'JSON_CALLBACK'
 			};
 
 			// REQUEST
