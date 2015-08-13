@@ -1,51 +1,39 @@
 angular.module('instagramApp', [])
-	.controller('MyCtrl', ['$scope', function($scope, $http) {
+	.controller('MyCtrl', function($scope, $http) {
 
 		//Executes on Submit click
 		$scope.onSubmit = function() {
-			var tag = $scope.userInput;
-			findImages(tag);
-		};
 
-		//Searches Instagram / makes request
-		function findImages(tag) {
-
-			//URL and API Config
-			var clientId = 'fe58bbb1a5724d1395b66b3f3728d11c';
-			var baseUrl = "https://api.instagram.com/v1";
-			var request = "/tags/" + tag + "/media/recent";
-			var url = baseUrl + request;
+			var url = 'https://api.instagram.com/v1/tags/' + $scope.userInput + '/media/recent';
 
 			//PARAMETERS
-			var request = {
-				'params': {
-					'client_id': clientId,
-					'count': 30,
-					'callback': 'JSON_CALLBACK'
-				}
+			var config = {
+				'client_id': 'fe58bbb1a5724d1395b66b3f3728d11c',
+				'count': 30,
+				'callback': 'JSON_CALLBACK'
 			};
 
 			// REQUEST
 			$http({
+				url: url,
 				method: 'JSONP',
-			 	url: url,
-			 	params: request
+			 	params: config,
 			})
 			.success(function(result) {
+				$scope.displayText = $scope.userInput;
 				$scope.feedback = true;
 				$scope.images = result.data;
-				$scope.displayText = $scope.userInput;
 				$scope.userInput = "";
 				console.log("success");
 			})
 			.error(function() {
-				$scope.loaded = false;
 				$scope.errorMessage = true;
 				console.log("request failed");
 			});
+
 		};
 
-	}]);
+	});
 
 
 
