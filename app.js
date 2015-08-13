@@ -20,11 +20,14 @@ angular.module('instagramApp', [])
 			 	params: config,
 			})
 			.success(function(result) {
+
+				//MAKE IF ELSE STATEMENT, IF RESULTS = 0, GIVE FEEDBACK
 				$scope.displayText = $scope.userInput;
-				$scope.feedback = true;
 				$scope.images = result.data;
+				$scope.numRes = $scope.images.length;
+				$scope.feedback = true;
 				$scope.userInput = "";
-				console.log("success");
+				console.log($scope.numRes);
 			})
 			.error(function() {
 				$scope.errorMessage = true;
