@@ -1,44 +1,41 @@
 angular.module('instagramApp', ['ngAnimate'])
-	.controller('MyCtrl', ['$scope', function($scope) {
+	.controller('MyCtrl', ['$scope', function($scope, $http) {
 
-		var feedback = false; //hides feedback text on page load
+		var hashtag = $scope.userInput; 
 
-		$scope.onSubmit = function() {
-			// function wait() {
-			// 	var defer = $q.defer();
-			// 	$timeout(function() {
-			// 		defer.resolve();
-			// 	}, 1000);
-			// 	return defer.promise;
-			// };
+		//Submit function makes request
+		$scope.onSubmit = function(hashtag) {
+	
 
 			// URL
-			//var url = "https://api.instagram.com/v1/tags/" + $scope.userInput + "/media/recent";
+			var url = "https://api.instagram.com/v1/tags/" + hashtag + "/media/recent";
 
 			// PARAMS
-			// var request = {
-			// 	client_id: "fe58bbb1a5724d1395b66b3f3728d11c";
-			// 	callback: "JSON_CALLBACK";
-			// 	count: 30;
-			// };
+			var request = {
+			 	client_id: 'fe58bbb1a5724d1395b66b3f3728d11c';
+			 	callback: 'JSON_CALLBACK';
+			 	count: 30
+			};
 
 			// REQUEST
-			// $http({
-			// 	method: 'JSONP',
-			// 	url: url,
-			// 	params: request
-			// })
-			// .success(function(result) {
+			$http({
+				method: 'JSONP',
+			 	url: url,
+			 	params: request
+			})
+			.success(function(result) {
 				$scope.feedback = true;
-				//$scope.result = result;
-				//$scope.images = $scope.result.data;
+				$scope.result = result;
+				$scope.images = result.data;
 				$scope.displayText = $scope.userInput;
 				$scope.userInput = "";
-			// })
-			// .error(function() {
-			// 	scope.loaded = false;
-			// 	$scope.errorMessage = "Sorry, we returned an error.";
-			// });
+				console.log("success");
+			})
+			.error(function() {
+				$scope.loaded = false;
+				$scope.errorMessage = true;
+				console.log("request failed");
+			});
 
 		};
 
